@@ -57,10 +57,15 @@ async def give_filter(client, message):
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def pv_filter(client, message):
-    kd = await global_filters(client, message)
-    if kd == False:
-        await auto_filter(client, message)
+    if PMFILTER.strip().lower() in ["true", "yes", "1", "enable", "y"]:       
+        if G_FILTER:
+            kd = await global_filters(client, message)
+            if kd == False:
+        else:                    
+            await auto_filter(client, message)
+    elif PMFILTER.strip().lower() in ["false", "no", "0", "disable", "n"]:
 
+        return 
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
