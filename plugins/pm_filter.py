@@ -64,8 +64,8 @@ async def pv_filter(client, message):
         else:                    
             await auto_filter(client, message)
     elif PMFILTER.strip().lower() in ["false", "no", "0", "disable", "n"]:
-
         return 
+      
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
